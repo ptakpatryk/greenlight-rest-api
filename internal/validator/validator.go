@@ -7,20 +7,20 @@ var (
 )
 
 type Validator struct {
-	errors map[string]string
+	Errors map[string]string
 }
 
 func New() *Validator {
-	return &Validator{errors: make(map[string]string)}
+	return &Validator{Errors: make(map[string]string)}
 }
 
 func (v *Validator) Valid() bool {
-	return len(v.errors) == 0
+	return len(v.Errors) == 0
 }
 
 func (v *Validator) AddError(key, message string) {
-	if _, exists := v.errors[key]; !exists {
-		v.errors[key] = message
+	if _, exists := v.Errors[key]; !exists {
+		v.Errors[key] = message
 	}
 }
 
