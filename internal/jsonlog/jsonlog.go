@@ -45,16 +45,16 @@ func New(out io.Writer, minLevel Level) *Logger {
 }
 
 func (l *Logger) PrintInfo(message string, properties map[string]string) {
-  l.print(LevelInfo, message, properties)
+	l.print(LevelInfo, message, properties)
 }
 
 func (l *Logger) PrintError(err error, properties map[string]string) {
-  l.print(LevelError, err.Error(), properties)
+	l.print(LevelError, err.Error(), properties)
 }
 
 func (l *Logger) PrintFatal(err error, properties map[string]string) {
-  l.print(LevelInfo, err.Error(), properties)
-  os.Exit(1)
+	l.print(LevelInfo, err.Error(), properties)
+	os.Exit(1)
 }
 
 func (l *Logger) print(level Level, message string, properties map[string]string) (int, error) {
