@@ -28,7 +28,7 @@ func New(host string, port int, username, password, sender string) Mailer {
 	}
 }
 
-func (m *Mailer) Send(recipent, templateFile string, data any) error {
+func (m *Mailer) Send(recipient, templateFile string, data any) error {
 	tmpl, err := template.New("email").ParseFS(templateFS, "templates/"+templateFile)
 	if err != nil {
 		return err
@@ -53,11 +53,11 @@ func (m *Mailer) Send(recipent, templateFile string, data any) error {
 	}
 
 	msg := mail.NewMessage()
-	msg.SetHeader("To", recipent)
+	msg.SetHeader("To", recipient)
 	msg.SetHeader("From", m.sender)
 	msg.SetHeader("Subject", subject.String())
-	msg.SetHeader("text/plain", plainBody.String())
-	msg.SetHeader("text/html", htmlBody.String())
+	msg.SetBody("text/plain", plainBody.String())
+	msg.AddAlternative("text/html", htmlBody.String())
 
 	err = m.dialer.DialAndSend(msg)
 	if err != nil {
