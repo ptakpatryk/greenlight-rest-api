@@ -5,12 +5,13 @@ import (
 	"database/sql"
 	"flag"
 	"os"
+	"sync"
 	"time"
 
 	_ "github.com/lib/pq"
 	"github.com/patrykptak/greenlight-rest-api/internal/data"
-	"github.com/patrykptak/greenlight-rest-api/internal/mailer"
 	"github.com/patrykptak/greenlight-rest-api/internal/jsonlog"
+	"github.com/patrykptak/greenlight-rest-api/internal/mailer"
 )
 
 const version = "1.0.0"
@@ -43,6 +44,7 @@ type application struct {
 	logger *jsonlog.Logger
 	models data.Models
 	mailer mailer.Mailer
+  wg sync.WaitGroup
 }
 
 func main() {
