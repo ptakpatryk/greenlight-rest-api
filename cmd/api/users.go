@@ -93,7 +93,7 @@ func (app *application) activateUserHandler(w http.ResponseWriter, r *http.Reque
 
 	if data.ValidateTokenPlaintext(v, input.TokenPlaintext); !v.Valid() {
 		app.failedValidationResponse(w, r, v.Errors)
-    return
+		return
 	}
 
 	user, err := app.models.Users.GetForToken(data.ScopeActivation, input.TokenPlaintext)

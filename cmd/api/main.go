@@ -44,7 +44,7 @@ type application struct {
 	logger *jsonlog.Logger
 	models data.Models
 	mailer mailer.Mailer
-  wg sync.WaitGroup
+	wg     sync.WaitGroup
 }
 
 func main() {
@@ -84,7 +84,7 @@ func main() {
 		config: cfg,
 		logger: logger,
 		models: data.NewModels(db),
-    mailer: mailer.New(cfg.smtp.host, cfg.smtp.port, cfg.smtp.username, cfg.smtp.password, cfg.smtp.sender),
+		mailer: mailer.New(cfg.smtp.host, cfg.smtp.port, cfg.smtp.username, cfg.smtp.password, cfg.smtp.sender),
 	}
 
 	err = app.serve()
